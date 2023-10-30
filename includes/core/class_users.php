@@ -119,7 +119,9 @@ class Users
         // Remove all non-numeric characters from phone
         $phone = isset($d['phone']) ? preg_replace('/\D+/', '', trim($d['phone'])) : '';
 
-        $plot_id = isset($d['plot_id']) && preg_match('/^(\d+(, \d+)*)?$/', $d['plot_id']) ? $d['plot_id'] : '0';
+        $plot_id = isset($d['plot_id']) && preg_match('/^[\d,\s]+$/', $d['plot_id']) ? $d['plot_id'] : '';
+
+
         $offset = isset($d['offset']) ? preg_replace('~\D+~', '', $d['offset']) : 0;
 
         if (empty($first_name) || empty($last_name) || empty($email) || empty($phone)) {
